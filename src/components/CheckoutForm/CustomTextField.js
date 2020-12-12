@@ -13,7 +13,7 @@ export default function CustomTextField({ name, label, required }) {
         fullWidth
         name={name}
         label={label}
-        required={required}
+        required
       />
     </Grid>
   )
