@@ -17,47 +17,74 @@ export default function PaymentForm({
   backStep,
   onCaptureCheckout,
   nextStep,
+  timeout,
 }) {
-  // const handleSubmit = async (e, elements, stripe) => {
-  //   e.preventDefault()
+  const handleSubmit = async (e, elements, stripe) => {
+    e.preventDefault()
 
-  //   if (!stripe || !elements) return
+    const orderData = {
+      line_items: checkoutToken.live.line_items,
+      customer: {
+        firstName: shippingData.firstName,
+        lastName: shippingData.lastName,
+        email: shippingData.email,
+      },
+      shipping: {
+        name: 'Primary',
+        street: shippingData.address1,
+        town_city: shippingData.city,
+        country_state: shippingData.shippingSubdivision,
+        postal_zip: shippingData.zip,
+        country: shippingData.shippingCountry,
+      },
+      fulfilment: { shipping_method: shippingData.shippingOption },
+    }
 
-  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
-  //     type: 'card',
-  //     card: CardElement,
-  //   })
+    console.log('checkoutTokenId', checkoutToken.id)
+    console.log('shipping Data', shippingData)
+    console.log('orderData', orderData)
 
-  //   if (error) {
-  //     console.log(error)
-  //   } else {
-  //     const orderData = {
-  //       line_items: checkoutToken.live.line_items,
-  //       customer: {
-  //         firstName: shippingData.firstName,
-  //         lastName: shippingData.lastName,
-  //         email: shippingData.email,
-  //       },
-  //       shipping: {
-  //         name: 'Primary',
-  //         street: shippingData.address1,
-  //         town_city: shippingData.city,
-  //         country_state: shippingData.shippingSubdivision,
-  //         postal_zip: shippingData.zip,
-  //         country: shippingData.shippingCountry,
-  //       },
-  //       fulfilment: { shipping_method: shippingData.shippingOption },
-  //       payment: {
-  //         gateway: 'stripe',
-  //         stripe: {
-  //           payment_metho_id: paymentMethod.id,
-  //         },
-  //       },
-  //     }
-  //     onCaptureCheckout(checkoutToken.id, orderData)
-  //     nextStep()
-  //   }
-  // }
+    onCaptureCheckout(checkoutToken.id, orderData)
+    timeout()
+    nextStep()
+
+    // if (!stripe || !elements) return
+
+    // const { error, paymentMethod } = await stripe.createPaymentMethod({
+    //   type: 'card',
+    //   card: CardElement,
+    // })
+
+    // if (error) {
+    //   console.log(error)
+    // } else {
+    // const orderData = {
+    //   line_items: checkoutToken.live.line_items,
+    //   customer: {
+    //     firstName: shippingData.firstName,
+    //     lastName: shippingData.lastName,
+    //     email: shippingData.email,
+    //   },
+    //   shipping: {
+    //     name: 'Primary',
+    //     street: shippingData.address1,
+    //     town_city: shippingData.city,
+    //     country_state: shippingData.shippingSubdivision,
+    //     postal_zip: shippingData.zip,
+    //     country: shippingData.shippingCountry,
+    //   },
+    //   fulfilment: { shipping_method: shippingData.shippingOption },
+    // payment: {
+    //   gateway: 'stripe',
+    //   stripe: {
+    //     payment_metho_id: paymentMethod.id,
+    //   },
+    // },
+    // }
+    // onCaptureCheckout(checkoutToken.id, orderData)
+    // nextStep()
+    // }
+  }
 
   return (
     <div>
@@ -66,7 +93,7 @@ export default function PaymentForm({
       <Typography variant='h6' gutterBottom style={{ margin: '20px 0' }}>
         Payment method
       </Typography>
-      <form onSubmit={nextStep}>
+      <form onSubmit={handleSubmit}>
         <br />
         <br />
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>

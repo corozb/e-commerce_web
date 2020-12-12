@@ -2,7 +2,6 @@ import React from 'react'
 import { List, ListItem, ListItemText, Typography } from '@material-ui/core'
 
 export default function Review({ checkoutToken }) {
-  console.log(checkoutToken)
   return (
     <>
       <Typography variant='h6' gutterBottom>
