@@ -11,3 +11,5 @@ Tech Stack
 
 
 [Deployed](https://e-commerce-wood.netlify.app/)
+
+![](https://i.ibb.co/8xy6ZSp/e-commerce-wood-netlify-app.png)
