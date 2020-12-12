@@ -8,3 +8,6 @@ Tech Stack
 - [Stripe](https://stripe.com/es-us) payment
 - React Router
 - React Hook Form
+
+
+[Deployed](https://e-commerce-wood.netlify.app/)
