@@ -26,8 +26,8 @@ export default function Checkout({ cart }) {
     generateToken()
   }, [])
 
-  const nextStep = () => setActiveStep((prevActiveSte) => prevActiveSte + 1)
-  const backStep = () => setActiveStep((prevActiveSte) => prevActiveSte - 1)
+  const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
+  const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
 
   const next = (data) => {
     setShippingData(data)
@@ -39,7 +39,7 @@ export default function Checkout({ cart }) {
     activeStep === 0 ? (
       <AddressForm checkoutToken={checkoutToken} next={next} />
     ) : (
-      <PaymentForm shippingData={shippingData} />
+      <PaymentForm shippingData={shippingData} checkoutToken={checkoutToken} />
     )
 
   return (

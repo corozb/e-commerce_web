@@ -1,9 +1,10 @@
 import React from 'react'
+import Review from './Review'
 
-export default function PaymentForm() {
+export default function PaymentForm({ checkoutToken }) {
   return (
     <div>
-      <h1>Payment</h1>
+      <Review checkoutToken={checkoutToken} />
     </div>
   )
 }
