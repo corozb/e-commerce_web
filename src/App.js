@@ -59,7 +59,9 @@ function App() {
             handleEmptyCart={handleEmptyCart}
           />
         </Route>
-        <Route exact path='/checkout' component={Checkout} />
+        <Route exact path='/checkout'>
+          <Checkout cart={cart} />
+        </Route>
       </Switch>
     </Router>
   )
